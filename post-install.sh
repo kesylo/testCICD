@@ -4,6 +4,7 @@
 PWD=$1
 
 curl -sL https://deb.nodesource.com/setup_12.x > /dev/null
+echo "$PWD" | sudo -S apt-get update -y
 
 # Check if node is installed
 which node > /dev/null 2>&1
@@ -11,5 +12,5 @@ if [ $? -eq 0 ]; then
     echo "Node is installed, skipping..."
 else
     echo "Node is NOT installed, installing..."
-    echo "$PWD" | sudo -S apt install nodejs -y
+    echo "$PWD" | sudo -S apt-get install nodejs -y
 fi
