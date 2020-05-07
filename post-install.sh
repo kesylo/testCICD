@@ -1,7 +1,10 @@
 #!/bin/bash
 
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt install nodejs -y
+PWD=$1
+
+curl -sL https://deb.nodesource.com/setup_12.x > /dev/null
+
+echo "$PWD" | sudo -S apt install nodejs -y
 
 if node -v > /dev/null
   then
