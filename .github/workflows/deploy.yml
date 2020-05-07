@@ -32,7 +32,7 @@ jobs:
     - name: Run post install commands
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: touch kesy.txt
+        command: cd app-test && touch test.txt
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
