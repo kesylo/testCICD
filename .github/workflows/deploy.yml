@@ -20,22 +20,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     
-    - name: Copy files via scp
-      uses: appleboy/scp-action@master
-      env:
-        HOST: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
+    - name: Copy folder content recursively to remote
+      uses: garygrossgarten/github-action-scp@release
       with:
-        source: "."
-        target: "/home/kesylo/app-test" 
-      
-    - name: Executing remote  command
-      uses: appleboy/ssh-action@master
-      with:
+        local: .
+        remote: /home/kesylo/app-test
         host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: touch testok.txt
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSHKEY }}
