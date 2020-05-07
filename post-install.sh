@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# get pwd from script args
 PWD=$1
 
 curl -sL https://deb.nodesource.com/setup_12.x > /dev/null
