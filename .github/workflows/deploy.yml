@@ -28,4 +28,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "."
         target: "/home/kesylo/app-test"
+        script: touch loic.test
 
