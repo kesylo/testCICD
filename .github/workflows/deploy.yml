@@ -27,4 +27,4 @@ jobs:
         remote: /home/kesylo/app-test
         host: ${{ secrets.HOST }}
         username: ${{ secrets.SSH_USER }}
-        privateKey: ${{ secrets.SSHKEY }}
+        privateKey: ${{ secrets.SSH_KEY }}
