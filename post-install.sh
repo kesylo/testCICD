@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Update pc
-echo "$PWD" | sudo -S apt-get update -y
-
 # get pwd from script args
 PWD=$1
+
+# Update pc
+echo "$PWD" | sudo -S apt-get update -y
 
 echo "$PWD" | curl -sL https://deb.nodesource.com/setup_12.x | sudo -E -S bash -
 echo "$PWD" | sudo -S apt-get update -y
