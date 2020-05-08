@@ -33,6 +33,7 @@ else
 fi
 
 # set as process on startup
+echo "$PWD" | sudo -S env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup "$LOGGED_IN_USER" -u "$LOGGED_IN_USER" --hp /home/"$LOGGED_IN_USER"
 echo "$PWD" | sudo -S pm2 startup "$LOGGED_IN_USER"
 
 # display status
