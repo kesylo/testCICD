@@ -23,18 +23,18 @@ which pm2 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "PM2 is installed, skipping..."
     # stop pm2
-    pm2 restart server
+    echo "$PWD" | sudo -S pm2 restart server
 else
     echo "PM2 is NOT installed, installing..."
     npm i -g pm2
     # start server
-pm2 start ./bin/www # in my project, use server.js
+    pm2 start ./bin/www # in my project, use server.js
 fi
 
 # set as process on startup
 LOGGED_IN_USER=$(whoami)
-pm2 startup "$LOGGED_IN_USER"
+echo "$PWD" | sudo -S pm2 startup "$LOGGED_IN_USER"
 
 # display status
 pm2 status
-pm2 save
+echo "$PWD" | sudo -S pm2 save
