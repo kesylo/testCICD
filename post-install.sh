@@ -24,8 +24,8 @@ which pm2 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "PM2 is installed, skipping..."
     # stop app
-    echo "$PWD" | sudo -S pm2 delete quigo-api -f
-    echo "$PWD" | sudo -S pm2 start ./bin/www --name "quigo-api"
+    pm2 delete quigo-api -f
+    pm2 start ./bin/www --name "quigo-api"
 else
     echo "PM2 is NOT installed, installing..."
     echo "$PWD" | sudo -S npm i -g pm2
@@ -38,4 +38,4 @@ echo "$PWD" | sudo -S env PATH="$PATH":/usr/bin /usr/lib/node_modules/pm2/bin/pm
 
 # display status
 pm2 status
-echo "$PWD" | sudo -S pm2 save
+pm2 save
