@@ -32,7 +32,7 @@ jobs:
     - name: Run post install commands
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: cd app-test && chmod +x post-install.sh && echo ${{ secrets.PASSWORD }} | sudo -S sh post-install.sh ${{ secrets.USERNAME }}
+        command: cd app-test && chmod +x post-install.sh && sh post-install.sh ${{ secrets.PASSWORD }} ${{ secrets.USERNAME }}
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
