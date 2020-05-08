@@ -2,7 +2,7 @@
 
 # get pwd from script args
 PWD=$1
-LOGGED_IN_USER=$2
+USR=$2
 
 # Update pc
 echo "$PWD" | sudo -S apt-get update -y
@@ -24,7 +24,7 @@ which pm2 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "PM2 is installed, skipping..."
     # stop pm2
-    echo "$PWD" | sudo -S pm2 restart server
+    echo "$PWD" | sudo -S pm2 restart ./bin/www
 else
     echo "PM2 is NOT installed, installing..."
     echo "$PWD" | sudo -S npm i -g pm2
@@ -33,8 +33,7 @@ else
 fi
 
 # set as process on startup
-echo "$PWD" | sudo -S env PATH="$PATH":/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup "$LOGGED_IN_USER" -u "$LOGGED_IN_USER" --hp /home/"$LOGGED_IN_USER"
-echo "$PWD" | sudo -S pm2 startup "$LOGGED_IN_USER"
+echo "$PWD" | sudo -S env PATH="$PATH":/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u "$USR" --hp /home/"$USR"
 
 # display status
 pm2 status
