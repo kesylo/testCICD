@@ -26,11 +26,12 @@ if [ $? -eq 0 ]; then
     # stop app
     pm2 delete quigo-api -f
     pm2 start ./bin/www --name "quigo-api"
+    pm2 set pm2:autodump true
 else
     echo "PM2 is NOT installed, installing..."
     echo "$PWD" | sudo -S npm i -g pm2
     # start server
-    echo "$PWD" | sudo -S pm2 start ./bin/www --name "quigo-api" # in my project, use server.js
+    pm2 start ./bin/www --name "quigo-api" # in my project, use server.js
 fi
 
 # set as process on startup
