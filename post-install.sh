@@ -23,13 +23,14 @@ fi
 which pm2 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "PM2 is installed, skipping..."
-    # stop pm2
-    echo "$PWD" | sudo -S pm2 restart ./bin/www
+    # stop app
+    echo "$PWD" | sudo -S pm2 delete quigo-api -f
+    echo "$PWD" | sudo -S pm2 start ./bin/www --name "quigo-api"
 else
     echo "PM2 is NOT installed, installing..."
     echo "$PWD" | sudo -S npm i -g pm2
     # start server
-    pm2 start ./bin/www # in my project, use server.js
+    echo "$PWD" | sudo -S pm2 start ./bin/www --name "quigo-api" # in my project, use server.js
 fi
 
 # set as process on startup
