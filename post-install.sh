@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # get pwd from script args
-PWD=$1
+LOGGED_IN_USER=$1
 
 # Update pc
-echo "$PWD" | sudo -S apt-get update -y
+apt-get update -y
 
-echo "$PWD" | curl -sL https://deb.nodesource.com/setup_12.x | sudo -E -S bash -
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E -S bash -
 apt-get update -y
 
 # Check if node is installed
@@ -32,8 +32,6 @@ else
 fi
 
 # set as process on startup
-exit
-LOGGED_IN_USER=$(whoami)
 pm2 startup "$LOGGED_IN_USER"
 
 # display status
